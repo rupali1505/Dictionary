@@ -16,7 +16,7 @@ export default function Dictionary() {
   ];
 
   const handleClick = () => {
-    let newWord = word.toLowerCase();
+    let newWord = word.trim().toLowerCase();
     let result = dictionary.find((item)=>item.word.toLowerCase()===newWord);
     if(result){
         setDefination(result.meaning)
@@ -32,10 +32,14 @@ export default function Dictionary() {
       <input
         type="text"
         placeholder="Search for a word..."
+        data-testid="search-input"
+        value={word}
         onChange={(e) => setWord(e.target.value)}
       />
-      <button onClick={handleClick}>Search</button>
-      <h3>Defination:</h3>
+      <button data-testid="search-btn" onClick={handleClick}>
+        Search
+      </button>
+      <h3>Definition:</h3>
       <p>{defination}</p>
     </div>
   );
